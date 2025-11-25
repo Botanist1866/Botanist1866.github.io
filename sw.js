@@ -1,4 +1,4 @@
-const CACHE_NAME = 'solfege-trainer-v2';
+const CACHE_NAME = 'solfege-trainer-v4';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
@@ -23,6 +23,8 @@ self.addEventListener('install', (event) => {
             return cache.addAll(ASSETS_TO_CACHE);
         })
     );
+    // Force the waiting service worker to become the active service worker
+    self.skipWaiting();
 });
 
 // Fetch Event - Serve from Cache, Fallback to Network
@@ -49,6 +51,9 @@ self.addEventListener('activate', (event) => {
                     }
                 })
             );
+        }).then(() => {
+            // Take control of all clients immediately
+            return self.clients.claim();
         })
     );
 });

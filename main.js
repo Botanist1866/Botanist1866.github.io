@@ -27,10 +27,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Register Service Worker
     if ('serviceWorker' in navigator) {
+        // Reload page when new service worker takes control
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                window.location.reload();
+            }
+        });
+
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js')
                 .then(registration => {
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
+
+                    // Check for updates on page load
+                    registration.update();
+
+                    // Check for updates when page becomes visible
+                    document.addEventListener('visibilitychange', () => {
+                        if (!document.hidden) {
+                            registration.update();
+                        }
+                    });
                 })
                 .catch(err => {
                     console.log('ServiceWorker registration failed: ', err);
