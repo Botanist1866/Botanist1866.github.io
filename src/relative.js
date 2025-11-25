@@ -74,7 +74,7 @@ export class RelativeGame {
             // Reveal answer
             this.renderer.drawNotes([
                 { stepIndex: this.currentQuestion.refStep, label: this.currentQuestion.refName, color: 'var(--color-text)' },
-                { stepIndex: this.currentQuestion.targetStep, label: this.currentQuestion.targetName, color: 'var(--color-success)' }
+                { stepIndex: this.currentQuestion.targetStep, label: this.currentQuestion.targetName, color: 'var(--color-text)' }
             ]);
 
             // Auto next after delay
