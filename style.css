@@ -384,8 +384,42 @@ footer {
 }
 
 @media (max-width: 480px) {
+  body {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  #app {
+    height: 100%;
+    overflow-y: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .game-area {
+    gap: 1rem;
+  }
+
+  .menu-btn {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .menu-btn .icon {
+    font-size: 1.5rem;
+  }
+
   .option-btn {
     flex: 1 0 40%;
+    padding: 0.8rem;
+  }
+
+  footer {
+    display: none;
+  }
+
+  h1 {
+    font-size: 1.2rem;
   }
 }
 

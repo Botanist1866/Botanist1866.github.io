@@ -65,10 +65,10 @@ export class RelativeGame {
         if (this.currentQuestion.answered) return;
 
         const isCorrect = selectedSolfege === this.currentQuestion.targetName;
-        this.currentQuestion.answered = true;
         const timeMs = Date.now() - this.startTime;
 
         if (isCorrect) {
+            this.currentQuestion.answered = true;
             performanceTracker.recordResult('relative', true, timeMs);
             this.ui.showSuccess(selectedSolfege);
             // Reveal answer
@@ -76,21 +76,15 @@ export class RelativeGame {
                 { stepIndex: this.currentQuestion.refStep, label: this.currentQuestion.refName, color: 'var(--color-text)' },
                 { stepIndex: this.currentQuestion.targetStep, label: this.currentQuestion.targetName, color: 'var(--color-success)' }
             ]);
+
+            // Auto next after delay
+            setTimeout(() => {
+                this.nextQuestion();
+            }, 2000);
         } else {
             performanceTracker.recordResult('relative', false, timeMs);
-            this.ui.showError(selectedSolfege, this.currentQuestion.targetName);
-            // Reveal answer
-            this.renderer.drawNotes([
-                { stepIndex: this.currentQuestion.refStep, label: this.currentQuestion.refName, color: 'var(--color-text)' },
-                { stepIndex: this.currentQuestion.targetStep, label: this.currentQuestion.targetName, color: 'var(--color-error)' }
-            ]);
+            // Only show error for the selected button, don't reveal correct answer yet
+            this.ui.showError(selectedSolfege);
         }
-
-
-
-        // Auto next after delay
-        setTimeout(() => {
-            this.nextQuestion();
-        }, 2000);
     }
 }

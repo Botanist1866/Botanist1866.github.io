@@ -1,6 +1,6 @@
 {
   "name": "Solfège Trainer",
-  "short_name": "Solfège",
+  "short_name": "Solfège Trainer",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1a1a2e",
