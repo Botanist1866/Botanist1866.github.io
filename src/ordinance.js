@@ -22,8 +22,8 @@ export class OrdinanceGame {
         const isAscending = Math.random() > 0.5;
         const direction = isAscending ? 'Ascending' : 'Descending';
 
-        // 3. Random Length (3 to 5 notes total, including start)
-        const length = Math.floor(Math.random() * 3) + 3;
+        // 3. Random Length (2 to 5 notes total, including start)
+        const length = Math.floor(Math.random() * 4) + 2;
 
         // 4. Generate Target Sequence
         const target = [];
