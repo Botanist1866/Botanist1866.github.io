@@ -32,7 +32,7 @@ export const translations = {
         no_data: "No data available yet"
     },
     fr: {
-        title: "Entraîneur de Solfège",
+        title: "Solfego",
         score: "Score :",
         menu_title: "Choisissez un exercice",
         relative_title: "Lecture Relative",
